@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <meta charset="UTF-8">
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -516,7 +518,10 @@
       </div>
       <div class="fg">
         <label class="fl">Expected Date</label>
-        <input class="fi" id="f-date" type="date"/>
+        <input class="fi" id="f-date" type="text" readonly>
+        <span class="chip-note" style="margin-top: 6px; display: block;">
+        📅 Tap to change date
+        </span>
       </div>
       <div class="fg">
         <label class="fl">Special Instructions</label>
@@ -571,6 +576,22 @@
 }
 
  // flatpickr initialization removed - using native date input
+
+ function formatDate(date) {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
+ flatpickr("#f-date", {
+  dateFormat: "d-m-Y",
+  defaultDate: "today",  // Show today's date initially
+  minDate: "today",      // Allow today or future dates
+  disableMobile: false   // Allow mobile interaction
+});
+
   
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('f-date').valueAsDate = new Date();
