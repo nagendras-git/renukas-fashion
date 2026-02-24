@@ -292,37 +292,14 @@
     font-family: var(--font-body); color: var(--text1); outline: none;
     transition: border-color 0.2s; box-sizing: border-box;
     min-height: 48px;
-  }
-  /* Set background for most inputs */
-  input[type="text"].fi,
-  input[type="tel"].fi,
-  textarea.fi {
+    /* Fix 1: Apply background to ALL inputs uniformly (previously only matched
+       inputs with explicit type="text" or type="tel" attributes via CSS selector,
+       leaving name/flat/size inputs white on iOS/Android) */
     background: var(--bg);
-  }
-  /* Text and tel inputs - remove custom appearance */
-  input[type="text"].fi,
-  input[type="tel"].fi {
-    -webkit-appearance: none; 
+    /* Fix 2: Remove browser/iOS native styling so all inputs render with
+       identical dimensions — critical for textarea and date on iOS Safari */
+    -webkit-appearance: none;
     appearance: none;
-  }
-  
-  /* Date input - use native appearance with styling */
-  input[type="date"].fi {
-    color: var(--text1);
-    font-size: 16px;
-  }
-  
-  /* Show format in date input */
-  input[type="date"].fi::placeholder {
-    color: var(--text3);
-  }
-  
-  /* Style calendar icon */
-  input[type="date"].fi::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    color: var(--text2);
-    opacity: 1;
-    margin-right: 8px;
   }
   
   .fi:focus { border-color: var(--brown); }
@@ -575,16 +552,6 @@
   return `${day}-${month}-${year}`;
 }
 
- // flatpickr initialization removed - using native date input
-
- function formatDate(date) {
-  const d = new Date(date);
-  const day = String(d.getDate()).padStart(2, '0');
-  const month = String(d.getMonth() + 1).padStart(2, '0');
-  const year = d.getFullYear();
-  return `${day}-${month}-${year}`;
-}
-
  flatpickr("#f-date", {
   dateFormat: "d-m-Y",
   defaultDate: "today",  // Show today's date initially
@@ -593,9 +560,7 @@
 });
 
   
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('f-date').valueAsDate = new Date();
-  });
+
 
   function sendOrder() {
     const name  = document.getElementById('f-name').value.trim();
