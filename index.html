@@ -1,8 +1,7 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <meta charset="UTF-8">
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -12,355 +11,378 @@
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html { color-scheme: light only; }
 
-  :root {
-    --bg: #F5EFE6;
-    --card: #FAF8F3;
-    --text1: #3B2010;
-    --text2: #7A5C3E;
-    --text3: #A8886A;
-    --div: #E5D8C8;
-    --brown: #6B4423;
-    --brown-light: #EDE5D7;
-    --font-head: 'Playfair Display', Georgia, serif;
-    --font-body: 'DM Sans', sans-serif;
-  }
+:root {
+–bg: #F5EFE6;
+–card: #FAF8F3;
+–text1: #3B2010;
+–text2: #7A5C3E;
+–text3: #A8886A;
+–div: #E5D8C8;
+–brown: #6B4423;
+–brown-light: #EDE5D7;
+–font-head: ‘Playfair Display’, Georgia, serif;
+–font-body: ‘DM Sans’, sans-serif;
+}
 
-  body { font-family: var(--font-body); background: var(--bg); min-height: 100vh; color: var(--text1); }
+body { font-family: var(–font-body); background: var(–bg); min-height: 100vh; color: var(–text1); }
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(160deg, #EDE5D7 0%, #E5D5C5 50%, #EDE5D7 100%);
-    padding: 52px 24px 36px;
-    text-align: center;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(circle, rgba(92,51,23,0.06) 1px, transparent 1px);
-    background-size: 20px 20px;
-    pointer-events: none;
-  }
-  .hero-inner { position: relative; }
-  .hero-tag {
-    display: inline-block;
-    border: 1px solid var(--text3);
-    color: var(--text2);
-    font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
-    text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
-    margin-bottom: 16px; font-family: var(--font-body);
-  }
-  .hero-name {
-    font-family: var(--font-head);
-    font-size: 36px; font-weight: 700; color: var(--brown);
-    line-height: 1.15; margin-bottom: 2px; letter-spacing: -0.3px;
-  }
-  .hero-studio {
-    font-family: var(--font-head);
-    font-size: 22px; font-style: italic; color: var(--text2);
-    margin-bottom: 12px;
-  }
-  .hero-sub {
-    font-size: 13px; color: var(--text2); line-height: 1.6;
-    margin-bottom: 6px;
-  }
-  .hero-services {
-    font-size: 13px; font-weight: 600; color: var(--brown);
-    margin-bottom: 22px; letter-spacing: 0.01em;
-  }
-  /* Decorative divider */
-  .hero-divider {
-    display: flex; align-items: center; gap: 10px;
-    justify-content: center; margin: 16px 0 20px;
-  }
-  .hero-divider::before, .hero-divider::after {
-    content: ''; flex: 1; max-width: 60px;
-    height: 1px; background: var(--text3);
-  }
-  .hero-divider span { color: var(--text3); font-size: 14px; }
+/* ── HERO ── */
+.hero {
+background: linear-gradient(160deg, #EDE5D7 0%, #E5D5C5 50%, #EDE5D7 100%);
+padding: 52px 24px 36px;
+text-align: center;
+position: relative; overflow: hidden;
+}
+.hero::before {
+content: ‘’;
+position: absolute; inset: 0;
+background-image: radial-gradient(circle, rgba(92,51,23,0.06) 1px, transparent 1px);
+background-size: 20px 20px;
+pointer-events: none;
+}
+.hero-inner { position: relative; }
+.hero-tag {
+display: inline-block;
+border: 1px solid var(–text3);
+color: var(–text2);
+font-size: 10px; font-weight: 600; letter-spacing: 0.18em;
+text-transform: uppercase; padding: 5px 14px; border-radius: 20px;
+margin-bottom: 16px; font-family: var(–font-body);
+}
+.hero-name {
+font-family: var(–font-head);
+font-size: 36px; font-weight: 700; color: var(–brown);
+line-height: 1.15; margin-bottom: 2px; letter-spacing: -0.3px;
+}
+.hero-studio {
+font-family: var(–font-head);
+font-size: 22px; font-style: italic; color: var(–text2);
+margin-bottom: 12px;
+}
+.hero-sub {
+font-size: 13px; color: var(–text2); line-height: 1.6;
+margin-bottom: 6px;
+}
+.hero-services {
+font-size: 13px; font-weight: 600; color: var(–brown);
+margin-bottom: 22px; letter-spacing: 0.01em;
+}
+/* Decorative divider */
+.hero-divider {
+display: flex; align-items: center; gap: 10px;
+justify-content: center; margin: 16px 0 20px;
+}
+.hero-divider::before, .hero-divider::after {
+content: ‘’; flex: 1; max-width: 60px;
+height: 1px; background: var(–text3);
+}
+.hero-divider span { color: var(–text3); font-size: 14px; }
 
-  .btn-wa {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: #25D366; color: #fff; text-decoration: none;
-    border-radius: 10px; padding: 12px 20px;
-    font-size: 13px; font-weight: 700; font-family: var(--font-body);
-  }
-  .btn-wa:active { opacity: 0.85; }
+.btn-wa {
+display: inline-flex; align-items: center; gap: 8px;
+background: #25D366; color: #fff; text-decoration: none;
+border-radius: 10px; padding: 12px 20px;
+font-size: 13px; font-weight: 700; font-family: var(–font-body);
+}
+.btn-wa:active { opacity: 0.85; }
 
+/* ── CONTENT ── */
+.content { max-width: 480px; margin: 0 auto; padding: 0 16px 140px; }
+@media (min-width: 768px) { .content { padding-bottom: 0; } }
 
-  /* ── CONTENT ── */
-  .content { max-width: 480px; margin: 0 auto; padding: 0 16px 140px; }
-  @media (min-width: 768px) { .content { padding-bottom: 0; } }
+/* ── DESKTOP RESPONSIVE ── */
+@media (min-width: 768px) {
+body { background: #E8D5BE; }
 
-  /* ── DESKTOP RESPONSIVE ── */
-  @media (min-width: 768px) {
-    body { background: #E8D5BE; }
+```
+/* Center the app like a phone mockup on desktop */
+.app-shell {
+  max-width: 480px; margin: 40px auto;
+  border-radius: 28px; overflow: hidden;
+  box-shadow: 0 24px 80px rgba(59,32,16,0.2), 0 0 0 1px rgba(59,32,16,0.08);
+  background: var(--bg);
+}
 
-    /* Center the app like a phone mockup on desktop */
-    .app-shell {
-      max-width: 480px; margin: 40px auto;
-      border-radius: 28px; overflow: hidden;
-      box-shadow: 0 24px 80px rgba(59,32,16,0.2), 0 0 0 1px rgba(59,32,16,0.08);
-      background: var(--bg);
-    }
+.hero { border-radius: 0; }
 
-    .hero { border-radius: 0; }
+.sticky {
+  border-radius: 0 0 0 0;
+  position: sticky; bottom: 0;
+}
 
-    .sticky {
-      border-radius: 0 0 0 0;
-      position: sticky; bottom: 0;
-    }
+.nav-hint {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text3);
+  padding: 12px;
+  background: #E8D5BE;
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+}
+```
 
-    .nav-hint {
-      display: block;
-      text-align: center;
-      font-size: 12px;
-      color: var(--text3);
-      padding: 12px;
-      background: #E8D5BE;
-      font-family: var(--font-body);
-      letter-spacing: 0.05em;
-    }
-  }
+}
 
-  @media (max-width: 767px) {
-    .nav-hint { display: none; }
-    .app-shell { background: transparent; }
-  }
+@media (max-width: 767px) {
+.nav-hint { display: none; }
+.app-shell { background: transparent; }
+}
 
-  .sec-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
-    text-transform: uppercase; color: var(--text3);
-    margin: 28px 0 12px 2px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--div); }
+.sec-label {
+font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+text-transform: uppercase; color: var(–text3);
+margin: 28px 0 12px 2px;
+display: flex; align-items: center; gap: 10px;
+}
+.sec-label::after { content: ‘’; flex: 1; height: 1px; background: var(–div); }
 
-  /* ── COLLAPSIBLE SECTIONS ── */
-  .sec-header {
-    display: flex; align-items: center; justify-content: space-between;
-    cursor: pointer; padding: 12px 16px;
-    background: var(--brown); color: white; border-radius: 12px;
-    margin: 20px 0 0 0; font-weight: 600; user-select: none;
-  }
-  .sec-header:active { opacity: 0.9; }
-  .sec-header-left { display: flex; align-items: center; gap: 8px; font-size: 16px; }
-  .sec-header-count { font-size: 13px; opacity: 0.75; }
-  .sec-toggle { font-size: 18px; transition: transform 0.3s ease; }
-  .sec-toggle.open { transform: rotate(180deg); }
-  .sec-content { max-height: 2000px; overflow: hidden; transition: max-height 0.3s ease; }
-  .sec-content.closed { max-height: 0; }
-  .sec-content.closed ~ .sec-label { display: none; }
+/* ── COLLAPSIBLE SECTIONS ── */
+.sec-header {
+display: flex; align-items: center; justify-content: space-between;
+cursor: pointer; padding: 12px 16px;
+background: var(–brown); color: white; border-radius: 12px;
+margin: 20px 0 0 0; font-weight: 600; user-select: none;
+}
+.sec-header:active { opacity: 0.9; }
+.sec-header-left { display: flex; align-items: center; gap: 8px; font-size: 16px; }
+.sec-header-count { font-size: 13px; opacity: 0.75; }
+.sec-toggle { font-size: 18px; transition: transform 0.3s ease; }
+.sec-toggle.open { transform: rotate(180deg); }
+.sec-content { max-height: 2000px; overflow: hidden; transition: max-height 0.3s ease; }
+.sec-content.closed { max-height: 0; }
+.sec-content.closed ~ .sec-label { display: none; }
 
-  /* ── SERVICE CARDS ── */
-  .svc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 0; }
-  .svc-list.full-width .svc-row { grid-column: 1 / -1; }
-  .svc-row {
-    background: var(--card); border-radius: 14px;
-    border: 1.5px solid var(--div); padding: 16px 14px;
-    display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
-  }
-  .svc-icon {
-    width: 48px; height: 48px; border-radius: 12px;
-    background: var(--brown-light);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; flex-shrink: 0;
-  }
+/* ── SERVICE CARDS ── */
+.svc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 0; }
+.svc-list.full-width .svc-row { grid-column: 1 / -1; }
+.svc-row {
+background: var(–card); border-radius: 14px;
+border: 1.5px solid var(–div); padding: 16px 14px;
+display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+}
+.svc-icon {
+width: 48px; height: 48px; border-radius: 12px;
+background: var(–brown-light);
+display: flex; align-items: center; justify-content: center;
+font-size: 24px; flex-shrink: 0;
+}
 
-  .svc-name { font-size: 14px; font-weight: 700; color: var(--text1); }
-  .svc-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
-  .svc-price { font-size: 13px; font-weight: 600; color: var(--brown); margin-top: 6px; }
+.svc-name { font-size: 14px; font-weight: 700; color: var(–text1); }
+.svc-desc { font-size: 12px; color: var(–text2); line-height: 1.4; }
+.svc-price { font-size: 13px; font-weight: 600; color: var(–brown); margin-top: 6px; }
 
-  /* ── HOW IT WORKS ── */
-  .steps { display: flex; flex-direction: column; }
-  .step {
-    display: flex; gap: 14px; padding: 14px 0;
-    border-bottom: 1px solid var(--div);
-  }
-  .step:last-child { border-bottom: none; }
-  .step-num {
-    width: 30px; height: 30px; border-radius: 50%;
-    background: var(--brown); color: #fff;
-    font-size: 12px; font-weight: 800;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .step-title { font-size: 14px; font-weight: 700; color: var(--text1); margin-bottom: 3px; }
-  .step-sub   { font-size: 13px; color: var(--text2); line-height: 1.4; }
+/* ── HOW IT WORKS ── */
+.steps { display: flex; flex-direction: column; }
+.step {
+display: flex; gap: 14px; padding: 14px 0;
+border-bottom: 1px solid var(–div);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+width: 30px; height: 30px; border-radius: 50%;
+background: var(–brown); color: #fff;
+font-size: 12px; font-weight: 800;
+display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.step-title { font-size: 14px; font-weight: 700; color: var(–text1); margin-bottom: 3px; }
+.step-sub   { font-size: 13px; color: var(–text2); line-height: 1.4; }
 
-  /* ── STICKY ORDER ── */
-  .sticky {
-    position: fixed; bottom: 0; left: 0; right: 0;
-    background: rgba(245,239,230,0.97);
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-    border-top: 1px solid var(--div); z-index: 100;
-  }
-  .sticky-inner { max-width: 480px; margin: 0 auto; }
-  .btn-sticky {
-    display: block; width: 100%;
-    background: var(--brown); color: white; border: none;
-    border-radius: 12px; padding: 16px;
-    font-size: 15px; font-weight: 700; font-family: var(--font-body);
-    cursor: pointer; letter-spacing: 0.02em;
-  }
-  .btn-sticky:active { opacity: 0.85; }
+/* ── STICKY ORDER ── */
+.sticky {
+position: fixed; bottom: 0; left: 0; right: 0;
+background: rgba(245,239,230,0.97);
+backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+border-top: 1px solid var(–div); z-index: 100;
+}
+.sticky-inner { max-width: 480px; margin: 0 auto; }
+.btn-sticky {
+display: block; width: 100%;
+background: var(–brown); color: white; border: none;
+border-radius: 12px; padding: 16px;
+font-size: 15px; font-weight: 700; font-family: var(–font-body);
+cursor: pointer; letter-spacing: 0.02em;
+}
+.btn-sticky:active { opacity: 0.85; }
 
-  @media (min-width: 768px) {
-    .sticky {
-      position: relative; bottom: auto; left: auto; right: auto;
-      background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
-      padding: 24px 0 0 0; border-top: none; margin-top: 24px;
-    }
-    .btn-sticky { padding: 18px 24px; font-size: 16px; }
-  }
+@media (min-width: 768px) {
+.sticky {
+position: relative; bottom: auto; left: auto; right: auto;
+background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+padding: 24px 0 0 0; border-top: none; margin-top: 24px;
+}
+.btn-sticky { padding: 18px 24px; font-size: 16px; }
+}
 
-  /* ── MODAL ── */
-  .overlay {
-    position: fixed; inset: 0; background: rgba(59,32,16,0.5);
-    z-index: 200; display: none; align-items: center; justify-content: center;
-    padding: 20px;
-  }
-  .overlay.open { display: flex; }
-  .modal {
-    background: var(--card); border-radius: 20px;
-    padding: 24px; width: 100%; max-width: 500px;
-    max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
-    animation: popIn 0.3s cubic-bezier(0.32,0.72,0,1);
-    box-shadow: 0 20px 60px rgba(59,32,16,0.15);
-    position: relative;
-  }
-  @keyframes popIn { from{transform:scale(0.95); opacity:0} to{transform:scale(1); opacity:1} }
-  
-  .m-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  .m-header-content { flex: 1; }
-  .m-close {
-    width: 32px; height: 32px; border: none; background: var(--bg);
-    border-radius: 8px; cursor: pointer; font-size: 20px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; transition: background 0.2s;
-  }
-  .m-close:hover { background: var(--div); }
-  .m-close:active { opacity: 0.7; }
-  
-  .m-handle { display: none; }
-  .m-title  {
-    font-family: var(--font-head); font-size: 24px;
-    color: var(--brown); margin-bottom: 4px;
-  }
-  .m-sub    { font-size: 13px; color: var(--text2); margin-bottom: 22px; line-height: 1.5; }
+/* ── MODAL ── */
+.overlay {
+position: fixed; inset: 0; background: rgba(59,32,16,0.5);
+z-index: 200; display: none; align-items: center; justify-content: center;
+padding: 20px;
+}
+.overlay.open { display: flex; }
+.modal {
+background: var(–card); border-radius: 20px;
+padding: 24px; width: 100%; max-width: 500px;
+max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+animation: popIn 0.3s cubic-bezier(0.32,0.72,0,1);
+box-shadow: 0 20px 60px rgba(59,32,16,0.15);
+position: relative;
+}
+@keyframes popIn { from{transform:scale(0.95); opacity:0} to{transform:scale(1); opacity:1} }
 
-  @media (max-width: 767px) {
-    .overlay {
-      align-items: flex-end; justify-content: center;
-      padding-bottom: env(safe-area-inset-bottom); padding: 0;
-    }
-    .modal {
-      border-radius: 24px 24px 0 0; padding: 12px 20px 48px;
-      max-width: 100%; animation: up 0.3s cubic-bezier(0.32,0.72,0,1);
-    }
-    @keyframes up { from{transform:translateY(100%)} to{transform:translateY(0)} }
-    .m-handle { display: block; width: 36px; height: 4px; background: var(--div); border-radius: 2px; margin: 0 auto 18px; }
-    .m-header { display: none; }
-  }
+.m-header {
+padding: 20px 24px;
+border-bottom: 1px solid var(–div);
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+}
+.m-title  {
+font-size: 18px;
+font-weight: 700;
+color: var(–text1);
+}
+.m-sub    {
+font-size: 12px;
+color: var(–text3);
+margin-top: 4px;
+}
+.m-close {
+background: none;
+border: none;
+font-size: 24px;
+cursor: pointer;
+padding: 0;
+color: var(–text2);
+}
 
-  .fg { margin-bottom: 14px; }
-  .fl {
-    font-size: 11px; font-weight: 700; color: var(--text2);
-    text-transform: uppercase; letter-spacing: 0.07em;
-    margin-bottom: 6px; display: block;
-  }
-  .fi {
-    width: 100%; border: 1.5px solid var(--div);
-    border-radius: 11px; padding: 12px 13px; font-size: 15px;
-    font-family: var(--font-body); color: var(--text1); outline: none;
-    transition: border-color 0.2s; box-sizing: border-box;
-    min-height: 48px;
-  }
-  /* Set background for most inputs */
-  input[type="text"].fi,
-  input[type="tel"].fi,
-  textarea.fi {
-    background: var(--bg);
-  }
-  /* Text and tel inputs - remove custom appearance */
-  input[type="text"].fi,
-  input[type="tel"].fi {
-    -webkit-appearance: none; 
-    appearance: none;
-  }
-  
-  /* Date input - use native appearance with styling */
-  input[type="date"].fi {
-    color: var(--text1);
-    font-size: 16px;
-  }
-  
-  /* Show format in date input */
-  input[type="date"].fi::placeholder {
-    color: var(--text3);
-  }
-  
-  /* Style calendar icon */
-  input[type="date"].fi::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    color: var(--text2);
-    opacity: 1;
-    margin-right: 8px;
-  }
-  
-  .fi:focus { border-color: var(--brown); }
-  .fi::placeholder {
-    color: var(--text3);
-  }
-  
-  textarea.fi { min-height: 80px; resize: none; }
+.m-content {
+padding: 24px;
+flex: 1;
+overflow-y: auto;
+}
 
-  /* Chips */
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    background: var(--bg); border: 1.5px solid var(--div);
-    border-radius: 8px; padding: 9px 13px; font-size: 13px; font-weight: 600;
-    color: var(--text2); cursor: pointer; font-family: var(--font-body);
-    transition: all 0.15s; display: flex; align-items: center; gap: 6px;
-  }
-  .chip.on {
-    background: var(--brown); border-color: var(--brown); color: #FFFFFF;
-  }
-  .chip:active { opacity: 0.7; }
-  .chip-note {
-    font-size: 11px; color: var(--text3); font-weight: 400;
-    margin-top: 6px; display: block;
-  }
+.m-handle { display: none; }
 
-  .m-actions { display: flex; gap: 10px; margin-top: 22px; }
-  .btn-cancel {
-    flex: 1; background: var(--bg); border: none; border-radius: 12px;
-    padding: 15px; font-size: 15px; font-weight: 600;
-    color: var(--text1); font-family: var(--font-body); cursor: pointer;
-  }
-  .btn-send {
-    flex: 2; background: #25D366; border: none; border-radius: 12px;
-    padding: 15px; font-size: 15px; font-weight: 700; color: white;
-    font-family: var(--font-body); cursor: pointer;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
-  .btn-send:active { opacity: 0.85; }
+@media (max-width: 767px) {
+.overlay {
+align-items: flex-end; justify-content: center;
+padding-bottom: env(safe-area-inset-bottom); padding: 0;
+}
+.modal {
+border-radius: 24px 24px 0 0;
+padding: 0;
+max-width: 100%;
+animation: up 0.3s cubic-bezier(0.32,0.72,0,1);
+}
+@keyframes up { from{transform:translateY(100%)} to{transform:translateY(0)} }
+.m-handle { display: block; width: 36px; height: 4px; background: var(–div); border-radius: 2px; margin: 0 auto 18px; }
+}
 
-  /* Toast */
-  .toast {
-    position: fixed; bottom: 90px; left: 50%;
-    transform: translateX(-50%) translateY(16px);
-    background: var(--brown); color: white; padding: 10px 22px;
-    border-radius: 22px; font-size: 13px; font-weight: 500;
-    opacity: 0; transition: all 0.25s; z-index: 300;
-    white-space: nowrap; font-family: var(--font-body);
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-  .toast.err  { background: #C0392B; }
+.fg { margin-bottom: 14px; }
+.fl {
+font-size: 11px; font-weight: 700; color: var(–text2);
+text-transform: uppercase; letter-spacing: 0.07em;
+margin-bottom: 6px; display: block;
+}
+.fi {
+width: 100%; border: 1.5px solid var(–div);
+border-radius: 11px; padding: 12px 13px; font-size: 15px;
+font-family: var(–font-body); color: var(–text1); outline: none;
+transition: border-color 0.2s; box-sizing: border-box;
+min-height: 48px;
+}
+/* Set background for most inputs */
+input[type=“text”].fi,
+input[type=“tel”].fi,
+textarea.fi {
+background: var(–bg);
+}
+/* Text and tel inputs - remove custom appearance */
+input[type=“text”].fi,
+input[type=“tel”].fi {
+-webkit-appearance: none;
+appearance: none;
+}
+
+/* Date input - use native appearance with styling */
+input[type=“date”].fi {
+color: var(–text1);
+font-size: 16px;
+}
+
+/* Show format in date input */
+input[type=“date”].fi::placeholder {
+color: var(–text3);
+}
+
+/* Style calendar icon */
+input[type=“date”].fi::-webkit-calendar-picker-indicator {
+cursor: pointer;
+color: var(–text2);
+opacity: 1;
+margin-right: 8px;
+}
+
+.fi:focus { border-color: var(–brown); }
+.fi::placeholder {
+color: var(–text3);
+}
+
+textarea.fi { min-height: 80px; resize: none; }
+
+/* Chips */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+background: var(–bg); border: 1.5px solid var(–div);
+border-radius: 8px; padding: 9px 13px; font-size: 13px; font-weight: 600;
+color: var(–text2); cursor: pointer; font-family: var(–font-body);
+transition: all 0.15s; display: flex; align-items: center; gap: 6px;
+}
+.chip.on {
+background: var(–brown); border-color: var(–brown); color: #FFFFFF;
+}
+.chip:active { opacity: 0.7; }
+.chip-note {
+font-size: 11px; color: var(–text3); font-weight: 400;
+margin-top: 6px; display: block;
+}
+
+.m-actions {
+display: flex;
+gap: 10px;
+padding: 20px 24px;
+border-top: 1px solid var(–div);
+background: var(–card);
+}
+.btn-cancel {
+flex: 1; background: var(–bg); border: none; border-radius: 12px;
+padding: 15px; font-size: 15px; font-weight: 600;
+color: var(–text1); font-family: var(–font-body); cursor: pointer;
+}
+.btn-send {
+flex: 2; background: #25D366; border: none; border-radius: 12px;
+padding: 15px; font-size: 15px; font-weight: 700; color: white;
+font-family: var(–font-body); cursor: pointer;
+display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-send:active { opacity: 0.85; }
+
+/* Toast */
+.toast {
+position: fixed; bottom: 90px; left: 50%;
+transform: translateX(-50%) translateY(16px);
+background: var(–brown); color: white; padding: 10px 22px;
+border-radius: 22px; font-size: 13px; font-weight: 500;
+opacity: 0; transition: all 0.25s; z-index: 300;
+white-space: nowrap; font-family: var(–font-body);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.err  { background: #C0392B; }
 </style>
+
 </head>
 <body>
 <div class="app-shell">
@@ -381,6 +403,7 @@
 <div class="content">
 
   <!-- TAILORING -->
+
   <div class="sec-header" onclick="toggleSection(this)">
     <div class="sec-header-left">
       <span>👗</span>
@@ -400,6 +423,7 @@
   </div>
 
   <!-- EVENT SERVICES -->
+
   <div class="sec-header" onclick="toggleSection(this)">
     <div class="sec-header-left">
       <span>🎉</span>
@@ -416,6 +440,7 @@
   </div>
 
   <!-- HOW IT WORKS -->
+
   <div class="sec-label">How it Works</div>
   <div class="steps">
     <div class="step">
@@ -444,6 +469,7 @@
 </div>
 
 <!-- STICKY -->
+
 <div class="sticky">
   <div class="sticky-inner">
     <button class="btn-sticky" onclick="openOrder()">Place an Order</button>
@@ -453,67 +479,70 @@
 </div><!-- end app-shell -->
 
 <!-- ORDER MODAL -->
+
 <div class="overlay" id="m-order" onclick="overlayClose(event)">
   <div class="modal">
     <div class="m-handle"></div>
     <div class="m-header">
-      <div class="m-header-content">
-        <div class="m-title">Place an Order</div>
-        <div class="m-sub">Fill in your details — sent to Renuka's WhatsApp instantly</div>
+      <div>
+        <div class="m-title">Your Order</div>
+        <div class="m-sub">Tell us what you want & when you need it</div>
       </div>
-      <button class="m-close" onclick="closeModal()" title="Close">✕</button>
+      <button class="m-close" onclick="closeModal()">✕</button>
     </div>
 
-    <div class="fg">
-      <label class="fl">Your Name</label>
-      <input class="fi" id="f-name" placeholder="e.g. Priya Sharma"/>
-    </div>
-    <div class="fg">
-      <label class="fl">Phone Number</label>
-      <input class="fi" id="f-phone" type="tel" placeholder="e.g. 9876543210"/>
-    </div>
-    <div class="fg">
-      <label class="fl">Flat / Block Number</label>
-      <input class="fi" id="f-flat" placeholder="e.g. A-204, Block B"/>
-    </div>
+```
+<div class="m-content">
+  <div class="fg">
+    <label class="fl">Your Name</label>
+    <input class="fi" id="f-name" placeholder="e.g. Priya Sharma"/>
+  </div>
+  <div class="fg">
+    <label class="fl">Phone Number</label>
+    <input class="fi" id="f-phone" type="tel" placeholder="e.g. 9876543210"/>
+  </div>
+  <div class="fg">
+    <label class="fl">Flat / Block Number</label>
+    <input class="fi" id="f-flat" placeholder="e.g. A-204, Block B"/>
+  </div>
 
-    <div class="fg">
-      <label class="fl">Select Services</label>
-      <div class="chips">
-        <button class="chip" onclick="pickSvc(this,'Frock')">👗 Frock</button>
-        <button class="chip" onclick="pickSvc(this,'Kurti')">🥻 Kurti</button>
-        <button class="chip" onclick="pickSvc(this,'Lehenga')">💃 Lehenga</button>
-        <button class="chip" onclick="pickSvc(this,'Blouse')">🪡 Blouse</button>
-        <button class="chip" onclick="pickSvc(this,'Zig-Zag Finishing')">〰️ Zig-Zag</button>
-        <button class="chip" onclick="pickSvc(this,'Saree Draping')">👘 Saree Draping</button>
-        <button class="chip" onclick="pickSvc(this,'Mehendi on Hands')">🌿 Mehendi</button>
-      </div>
-      <span class="chip-note">Tap to select · Select multiple if needed</span>
+  <div class="fg">
+    <label class="fl">Select Services</label>
+    <div class="chips">
+      <button class="chip" onclick="pickSvc(this,'Frock')">👗 Frock</button>
+      <button class="chip" onclick="pickSvc(this,'Kurti')">🥻 Kurti</button>
+      <button class="chip" onclick="pickSvc(this,'Lehenga')">💃 Lehenga</button>
+      <button class="chip" onclick="pickSvc(this,'Blouse')">🪡 Blouse</button>
+      <button class="chip" onclick="pickSvc(this,'Zig-Zag Finishing')">〰️ Zig-Zag</button>
+      <button class="chip" onclick="pickSvc(this,'Saree Draping')">👘 Saree Draping</button>
+      <button class="chip" onclick="pickSvc(this,'Mehendi on Hands')">🌿 Mehendi</button>
     </div>
+    <span class="chip-note">Tap to select · Select multiple if needed</span>
+  </div>
 
-    <div class="fg">
-      <label class="fl">Measurements / Size</label>
-      <input class="fi" id="f-size" placeholder="e.g. Bust 36, Waist 30, Hip 38 or Size M"/>
-    </div>
-    <div class="fg">
-<label class="fl">Expected Date</label>
-<input class="fi" id="f-date" type="text" readonly>
-<span class="chip-note" style="margin-top: 6px; display: block;">
-📅 Tap to change date
-</span>
-    </div>
-    <div class="fg">
-      <label class="fl">Special Instructions</label>
-      <textarea class="fi" id="f-note" placeholder="e.g. Round neck, 3/4 sleeves, colour preference, event date..."></textarea>
-    </div>
+  <div class="fg">
+    <label class="fl">Measurements / Size</label>
+    <input class="fi" id="f-size" placeholder="e.g. Bust 36, Waist 30, Hip 38 or Size M"/>
+  </div>
+  <div class="fg">
+    <label class="fl">Expected Date</label>
+    <input class="fi" id="f-date" type="date"/>
+  </div>
+  <div class="fg">
+    <label class="fl">Special Instructions</label>
+    <textarea class="fi" id="f-note" placeholder="e.g. Round neck, 3/4 sleeves, colour preference, event date..."></textarea>
+  </div>
+</div>
 
-    <div class="m-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-      <button class="btn-send" onclick="sendOrder()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.724.972.993-3.63-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
-        Send via WhatsApp
-      </button>
-    </div>
+<div class="m-actions">
+  <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+  <button class="btn-send" onclick="sendOrder()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.724.972.993-3.63-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    Send via WhatsApp
+  </button>
+</div>
+```
+
   </div>
 </div>
 
@@ -553,12 +582,11 @@
   return `${day}-${month}-${year}`;
 }
 
- flatpickr("#f-date", {
-  dateFormat: "d-m-Y",
-  defaultDate: "today",  // Show today's date initially
-  minDate: "today",      // Allow today or future dates
-  disableMobile: false   // Allow mobile interaction
-});
+ // flatpickr initialization removed - using native date input
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('f-date').valueAsDate = new Date();
+  });
 
   function sendOrder() {
     const name  = document.getElementById('f-name').value.trim();
@@ -627,5 +655,6 @@
     toggle.classList.toggle('open');
   }
 </script>
+
 </body>
 </html>
