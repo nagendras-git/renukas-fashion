@@ -274,8 +274,22 @@
     border-radius: 11px; padding: 12px 13px; font-size: 15px;
     font-family: var(--font-body); color: var(--text1); outline: none;
     transition: border-color 0.2s; -webkit-appearance: none; appearance: none;
+    box-sizing: border-box;
   }
   .fi:focus { border-color: var(--brown); }
+  
+  /* Date input specific styling */
+  input[type="date"].fi {
+    padding: 10px 12px; min-height: 46px;
+  }
+  input[type="date"].fi::-webkit-calendar-picker-indicator {
+    cursor: pointer; color: var(--text2); opacity: 0.7;
+  }
+  input[type="date"].fi::-webkit-outer-spin-button,
+  input[type="date"].fi::-webkit-inner-spin-button {
+    display: none;
+  }
+  
   textarea.fi { min-height: 80px; resize: none; }
 
   /* Chips */
