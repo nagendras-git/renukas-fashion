@@ -88,7 +88,7 @@
 
   /* ── CONTENT ── */
   .content { max-width: 480px; margin: 0 auto; padding: 0 16px 140px; }
-  @media (min-width: 768px) { .content { padding-bottom: 48px; } }
+  @media (min-width: 768px) { .content { padding-bottom: 0; } }
 
   /* ── DESKTOP RESPONSIVE ── */
   @media (min-width: 768px) {
@@ -184,18 +184,7 @@
   .step-title { font-size: 14px; font-weight: 700; color: var(--text1); margin-bottom: 3px; }
   .step-sub   { font-size: 13px; color: var(--text2); line-height: 1.4; }
 
-  /* ── FOOTER ── */
-  .footer {
-    background: var(--brown); text-align: center; padding: 24px 20px;
-  }
-  .footer-name {
-    font-family: var(--font-head); font-style: italic;
-    font-size: 20px; color: rgba(255,255,255,0.9); margin-bottom: 4px;
-  }
-  .footer-sub { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase; }
-
   /* ── STICKY ORDER ── */
-  @media (min-width: 768px) { .sticky { display: none; } }
   .sticky {
     position: fixed; bottom: 0; left: 0; right: 0;
     background: rgba(245,239,230,0.97);
@@ -212,6 +201,15 @@
     cursor: pointer; letter-spacing: 0.02em;
   }
   .btn-sticky:active { opacity: 0.85; }
+
+  @media (min-width: 768px) {
+    .sticky {
+      position: relative; bottom: auto; left: auto; right: auto;
+      background: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+      padding: 24px 0 0 0; border-top: none; margin-top: 24px;
+    }
+    .btn-sticky { padding: 18px 24px; font-size: 16px; }
+  }
 
   /* ── MODAL ── */
   .overlay {
@@ -374,12 +372,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <div class="footer-name">Renuka's Women's Fashion Studio</div>
-  <div class="footer-sub">Crafted with care · Right here in your community</div>
 </div>
 
 <!-- STICKY -->
