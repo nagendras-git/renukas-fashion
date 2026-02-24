@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <meta charset="UTF-8">
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -186,9 +184,6 @@
   .step-title { font-size: 14px; font-weight: 700; color: var(--text1); margin-bottom: 3px; }
   .step-sub   { font-size: 13px; color: var(--text2); line-height: 1.4; }
 
- .flatpickr-input {
-  cursor: pointer;
-}
   /* ── STICKY ORDER ── */
   .sticky {
     position: fixed; bottom: 0; left: 0; right: 0;
@@ -498,12 +493,8 @@
       <input class="fi" id="f-size" placeholder="e.g. Bust 36, Waist 30, Hip 38 or Size M"/>
     </div>
     <div class="fg">
-<label class="fl">Expected Date</label>
-<input class="fi" id="f-date" type="date" placeholder="dd-mm-yyyy" readonly name="date">
-
-<span class="chip-note" style="margin-top: 6px; display: block;">
-📅 Tap field to edit OR tap calendar icon to pick date
-</span>
+      <label class="fl">Expected Date</label>
+      <input class="fi" id="f-date" type="date" placeholder="dd-mm-yyyy" lang="en-GB/>
     </div>
     <div class="fg">
       <label class="fl">Special Instructions</label>
@@ -537,12 +528,6 @@
     }
   }
 
- flatpickr("#f-date", {
-  dateFormat: "d-m-Y",   // DD-MM-YYYY
-  minDate: "today",
-  allowInput: true
-});
-
   function openOrder() {
     document.getElementById('m-order').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -561,7 +546,7 @@
     const flat  = document.getElementById('f-flat').value.trim();
     const size  = document.getElementById('f-size').value.trim();
     const date  = document.getElementById('f-date').value;
-   const note  = document.getElementById('f-note').value.trim();
+    const note  = document.getElementById('f-note').value.trim();
 
     if (!name)                { toast('Please enter your name', true); return; }
     if (!phone)               { toast('Please enter your phone number', true); return; }
@@ -575,8 +560,10 @@
         const dateObj = new Date(`${dateParts[0]}-${dateParts[1]}-${dateParts[2]}T00:00:00`);
         if (!isNaN(dateObj)) {
           const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          deliveryStr = `${dateObj.getDate()} ${mo[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+        } else {
           deliveryStr = date;
-        } 
+        }
       } else {
         deliveryStr = date;
       }
