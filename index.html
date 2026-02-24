@@ -523,18 +523,6 @@
   // ⚠️ Replace with Renuka's real number: country code + number, no + or spaces
   // Example for India: 919876543210 (91 = India code)
   const WHATSAPP = '918465867727'; // 👈 CHANGE THIS
-  
-  // Service prices mapping
-  const servicePrices = {
-    'Frock': '₹800 - ₹1,500',
-    'Kurti': '₹500 - ₹1,000',
-    'Lehenga': '₹1,500 - ₹2,000',
-    'Blouse': '₹350 - ₹1,000',
-    'Zig-Zag Finishing': '₹100 - ₹150',
-    'Saree Draping': '₹500',
-    'Mehendi on Hands': '₹1,000 - ₹3,000'
-  };
-  
   let selectedSvcs = [];
 
   function pickSvc(el, svc) {
@@ -607,7 +595,7 @@
       `👤 *Name:* ${name}`,
       `📞 *Phone:* ${phone}`,
       flat  ? `🏠 *Flat / Block:* ${flat}` : '',
-      `🛍️ *Services:*\n${selectedSvcs.map(s => `  • ${s} - ${servicePrices[s]}`).join('\n')}`,
+      `🛍️ *Services:* ${selectedSvcs.join(', ')}`,
       size  ? `📏 *Measurements:* ${size}` : '',
       deliveryStr ? `📅 *Expected By:* ${deliveryStr}` : '',
       note  ? `📝 *Instructions:* ${note}` : '',
