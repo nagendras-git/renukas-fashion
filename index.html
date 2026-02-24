@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <meta charset="UTF-8">
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -493,9 +495,12 @@
       <input class="fi" id="f-size" placeholder="e.g. Bust 36, Waist 30, Hip 38 or Size M"/>
     </div>
     <div class="fg">
-      <label class="fl">Expected Date</label>
-      <input class="fi" id="f-date" type="date" placeholder="dd-mm-yyyy"/>
-      <span class="chip-note" style="margin-top: 6px; display: block;">📅 Tap field to edit OR tap calendar icon to pick date</span>
+<label class="fl">Expected Date</label>
+<input class="fi" id="f-date" type="text" placeholder="dd-mm-yyyy" readonly>
+
+<span class="chip-note" style="margin-top: 6px; display: block;">
+📅 Tap field to edit OR tap calendar icon to pick date
+</span>
     </div>
     <div class="fg">
       <label class="fl">Special Instructions</label>
@@ -528,6 +533,12 @@
       selectedSvcs.push(svc);
     }
   }
+
+ flatpickr("#f-date", {
+  dateFormat: "d-m-Y",   // DD-MM-YYYY
+  minDate: "today",
+  allowInput: true
+});
 
   function openOrder() {
     document.getElementById('m-order').classList.add('open');
