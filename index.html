@@ -270,24 +270,47 @@
     margin-bottom: 6px; display: block;
   }
   .fi {
-    width: 100%; background: var(--bg); border: 1.5px solid var(--div);
+    width: 100%; border: 1.5px solid var(--div);
     border-radius: 11px; padding: 12px 13px; font-size: 15px;
     font-family: var(--font-body); color: var(--text1); outline: none;
-    transition: border-color 0.2s; -webkit-appearance: none; appearance: none;
-    box-sizing: border-box;
+    transition: border-color 0.2s; box-sizing: border-box;
+    min-height: 48px;
   }
-  .fi:focus { border-color: var(--brown); }
+  /* Set background for most inputs */
+  input[type="text"].fi,
+  input[type="tel"].fi,
+  textarea.fi {
+    background: var(--bg);
+  }
+  /* Text and tel inputs - remove custom appearance */
+  input[type="text"].fi,
+  input[type="tel"].fi {
+    -webkit-appearance: none; 
+    appearance: none;
+  }
   
-  /* Date input specific styling */
+  /* Date input - use native appearance with styling */
   input[type="date"].fi {
-    padding: 10px 12px; min-height: 46px;
+    color: var(--text1);
+    font-size: 16px;
   }
+  
+  /* Show format in date input */
+  input[type="date"].fi::placeholder {
+    color: var(--text3);
+  }
+  
+  /* Style calendar icon */
   input[type="date"].fi::-webkit-calendar-picker-indicator {
-    cursor: pointer; color: var(--text2); opacity: 0.7;
+    cursor: pointer;
+    color: var(--text2);
+    opacity: 1;
+    margin-right: 8px;
   }
-  input[type="date"].fi::-webkit-outer-spin-button,
-  input[type="date"].fi::-webkit-inner-spin-button {
-    display: none;
+  
+  .fi:focus { border-color: var(--brown); }
+  .fi::placeholder {
+    color: var(--text3);
   }
   
   textarea.fi { min-height: 80px; resize: none; }
@@ -337,6 +360,7 @@
 </style>
 </head>
 <body>
+
 <div class="app-shell">
 <!-- HERO -->
 <div class="hero">
@@ -471,7 +495,8 @@
     </div>
     <div class="fg">
       <label class="fl">Expected Date</label>
-      <input class="fi" id="f-date" type="date"/>
+      <input class="fi" id="f-date" type="date" placeholder="dd-mm-yyyy"/>
+      <span class="chip-note" style="margin-top: 6px; display: block;">📅 Tap field to edit OR tap calendar icon to pick date</span>
     </div>
     <div class="fg">
       <label class="fl">Special Instructions</label>
@@ -531,9 +556,19 @@
 
     let deliveryStr = '';
     if (date) {
-      const d = new Date(date);
-      const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      deliveryStr = `${d.getDate()} ${mo[d.getMonth()]} ${d.getFullYear()}`;
+      // Date input provides YYYY-MM-DD format
+      if (date.includes('-') && date.length === 10) {
+        const dateParts = date.split('-');
+        const dateObj = new Date(`${dateParts[0]}-${dateParts[1]}-${dateParts[2]}T00:00:00`);
+        if (!isNaN(dateObj)) {
+          const mo = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          deliveryStr = `${dateObj.getDate()} ${mo[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+        } else {
+          deliveryStr = date;
+        }
+      } else {
+        deliveryStr = date;
+      }
     }
 
     const msg = [
