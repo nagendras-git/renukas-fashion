@@ -324,18 +324,12 @@
     background: var(--bg); border: 1.5px solid var(--div);
     border-radius: 8px; padding: 9px 13px; font-size: 13px; font-weight: 600;
     color: var(--text2); cursor: pointer; font-family: var(--font-body);
-    transition: all 0.15s; display: flex; flex-direction: column; align-items: center; gap: 4px;
+    transition: all 0.15s; display: flex; align-items: center; gap: 6px;
   }
   .chip.on {
     background: var(--brown); border-color: var(--brown); color: #FFFFFF;
   }
-  .chip.on .chip-price {
-    color: rgba(255,255,255,0.9);
-  }
   .chip:active { opacity: 0.7; }
-  .chip-price {
-    font-size: 10px; font-weight: 500; color: var(--brown); 
-  }
   .chip-note {
     font-size: 11px; color: var(--text3); font-weight: 400;
     margin-top: 6px; display: block;
@@ -486,13 +480,13 @@
     <div class="fg">
       <label class="fl">Select Services</label>
       <div class="chips">
-        <button class="chip" onclick="pickSvc(this,'Frock')"><div>👗 Frock</div><div class="chip-price">₹800-₹1,500</div></button>
-        <button class="chip" onclick="pickSvc(this,'Kurti')"><div>🥻 Kurti</div><div class="chip-price">₹500-₹1,000</div></button>
-        <button class="chip" onclick="pickSvc(this,'Lehenga')"><div>💃 Lehenga</div><div class="chip-price">₹1,500-₹2,000</div></button>
-        <button class="chip" onclick="pickSvc(this,'Blouse')"><div>🪡 Blouse</div><div class="chip-price">₹350-₹1,000</div></button>
-        <button class="chip" onclick="pickSvc(this,'Zig-Zag Finishing')"><div>〰️ Zig-Zag</div><div class="chip-price">₹100-₹150</div></button>
-        <button class="chip" onclick="pickSvc(this,'Saree Draping')"><div>👘 Saree Draping</div><div class="chip-price">₹500</div></button>
-        <button class="chip" onclick="pickSvc(this,'Mehendi on Hands')"><div>🌿 Mehendi</div><div class="chip-price">₹1,000-₹3,000</div></button>
+        <button class="chip" onclick="pickSvc(this,'Frock')">👗 Frock</button>
+        <button class="chip" onclick="pickSvc(this,'Kurti')">🥻 Kurti</button>
+        <button class="chip" onclick="pickSvc(this,'Lehenga')">💃 Lehenga</button>
+        <button class="chip" onclick="pickSvc(this,'Blouse')">🪡 Blouse</button>
+        <button class="chip" onclick="pickSvc(this,'Zig-Zag Finishing')">〰️ Zig-Zag</button>
+        <button class="chip" onclick="pickSvc(this,'Saree Draping')">👘 Saree Draping</button>
+        <button class="chip" onclick="pickSvc(this,'Mehendi on Hands')">🌿 Mehendi</button>
       </div>
       <span class="chip-note">Tap to select · Select multiple if needed</span>
     </div>
