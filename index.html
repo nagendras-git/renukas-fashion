@@ -87,8 +87,8 @@
 
 
   /* ── CONTENT ── */
-  .content { max-width: 480px; margin: 0 auto; padding: 0 16px 100px; }
-  @media (min-width: 768px) { .content { padding-bottom: 32px; } }
+  .content { max-width: 480px; margin: 0 auto; padding: 20px 16px 100px; }
+  @media (min-width: 768px) { .content { padding: 20px 16px 32px; } }
 
   /* ── DESKTOP RESPONSIVE ── */
   @media (min-width: 768px) {
@@ -155,19 +155,19 @@
   /* ── ACCORDION ── */
   .acc-header {
     display: flex; align-items: center; justify-content: space-between;
-    background: var(--card); border-radius: 14px;
+    background: var(--brown); border-radius: 14px;
     padding: 14px 16px; cursor: pointer; border: none;
     width: 100%; font-family: var(--font-body);
-    box-shadow: 0 1px 4px rgba(59,32,16,0.08), 0 0 0 1px rgba(59,32,16,0.05);
+    box-shadow: 0 2px 8px rgba(59,32,16,0.15);
     margin-bottom: 8px;
   }
   .acc-header:active { opacity: 0.85; }
   .acc-left { display: flex; align-items: center; gap: 10px; }
   .acc-emoji { font-size: 18px; }
-  .acc-title { font-size: 15px; font-weight: 700; color: var(--text1); }
-  .acc-count { font-size: 13px; color: var(--text2); font-weight: 500; }
+  .acc-title { font-size: 15px; font-weight: 700; color: #FFFFFF; }
+  .acc-count { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; }
   .acc-chevron {
-    font-size: 12px; color: var(--text3);
+    font-size: 12px; color: rgba(255,255,255,0.7);
     transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
   }
   .acc-body {
@@ -206,6 +206,8 @@
 
   /* ── STICKY ORDER ── */
   @media (min-width: 768px) { .sticky { display: none; } }
+  .desktop-order { display: none; max-width: 480px; margin: 24px auto 0; padding: 0 16px; }
+  @media (min-width: 768px) { .desktop-order { display: block; } }
   .sticky {
     position: fixed; bottom: 0; left: 0; right: 0;
     background: rgba(245,239,230,0.97);
@@ -222,6 +224,24 @@
     cursor: pointer; letter-spacing: 0.02em;
   }
   .btn-sticky:active { opacity: 0.85; }
+
+
+  /* ── DATE PICKER DROPDOWNS ── */
+  .date-row {
+    display: flex; gap: 6px;
+    background: var(--bg); border-radius: 11px;
+    padding: 4px 10px; border: 1.5px solid var(--div);
+    transition: border-color 0.2s;
+  }
+  .date-row:focus-within { border-color: var(--brown); }
+  .date-row select {
+    background: transparent; border: none; outline: none;
+    font-size: 15px; font-weight: 600; font-family: var(--font-body);
+    color: var(--text1); cursor: pointer; padding: 10px 2px;
+    -webkit-appearance: none; appearance: none;
+    text-align: center; text-align-last: center; flex: 1;
+  }
+  .date-sep { color: var(--div); font-size: 18px; display: flex; align-items: center; }
 
   /* ── MODAL ── */
   .overlay {
@@ -313,7 +333,7 @@
     <div class="hero-tag">✦ Boutique Tailoring &amp; Styling</div>
     <div class="hero-name">Renuka’s</div>
     <div class="hero-studio">Women’s Fashion Studio</div>
-    <div class="hero-sub">Stitching &amp; styling services for women<br>right here in our community</div>
+    <div class="hero-sub">Stitching &amp; styling services for women and kids<br>right here in our community</div>
     <a class="btn-wa" href="https://wa.me/919940539180" target="_blank">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.724.972.993-3.63-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
       Chat on WhatsApp
@@ -386,6 +406,10 @@
 
 </div>
 
+<div class="desktop-order">
+  <button class="btn-sticky" onclick="openOrder()">Place an Order</button>
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-name">Renuka's Women's Fashion Studio</div>
@@ -441,7 +465,13 @@
     </div>
     <div class="fg">
       <label class="fl">Expected Date</label>
-      <input class="fi" id="f-date" type="date"/>
+      <div class="date-row" id="date-row">
+        <select id="f-dd"></select>
+        <span class="date-sep">·</span>
+        <select id="f-dm"></select>
+        <span class="date-sep">·</span>
+        <select id="f-dy"></select>
+      </div>
     </div>
     <div class="fg">
       <label class="fl">Special Instructions</label>
@@ -463,6 +493,41 @@
 <script>
   // ⚠️ Replace with Renuka's real number: country code + number, no + or spaces
   // Example for India: 919876543210 (91 = India code)
+
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  function buildDatePicker() {
+    // Days
+    let dd = '<option value="">Day</option>';
+    for (let i = 1; i <= 31; i++) dd += `<option value="${i}">${i}</option>`;
+    document.getElementById('f-dd').innerHTML = dd;
+
+    // Months
+    let dm = '<option value="">Month</option>';
+    MONTHS.forEach((m, i) => dm += `<option value="${i+1}">${m}</option>`);
+    document.getElementById('f-dm').innerHTML = dm;
+
+    // Years
+    const now = new Date().getFullYear();
+    let dy = '<option value="">Year</option>';
+    for (let y = now; y <= now + 2; y++) dy += `<option value="${y}">${y}</option>`;
+    document.getElementById('f-dy').innerHTML = dy;
+  }
+
+  function getPickerDate() {
+    const d = document.getElementById('f-dd').value;
+    const m = document.getElementById('f-dm').value;
+    const y = document.getElementById('f-dy').value;
+    if (!d || !m || !y) return '';
+    return `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  }
+
+  function resetDatePicker() {
+    document.getElementById('f-dd').value = '';
+    document.getElementById('f-dm').value = '';
+    document.getElementById('f-dy').value = '';
+  }
+
   const WHATSAPP = '919940539180'; // 👈 CHANGE THIS
   let selectedSvcs = [];
 
@@ -492,7 +557,7 @@
     const phone = document.getElementById('f-phone').value.trim();
     const flat  = document.getElementById('f-flat').value.trim();
     const size  = document.getElementById('f-size').value.trim();
-    const date  = document.getElementById('f-date').value;
+    const date  = getPickerDate();
     const note  = document.getElementById('f-note').value.trim();
 
     if (!name)                { toast('Please enter your name', true); return; }
@@ -524,10 +589,11 @@
     closeModal();
     toast('Order sent to Renuka ✓');
 
-    ['f-name','f-phone','f-flat','f-size','f-date','f-note'].forEach(id => {
+    ['f-name','f-phone','f-flat','f-size','f-note'].forEach(id => {
       document.getElementById(id).value = '';
     });
     document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+    resetDatePicker();
     selectedSvcs = [];
   }
 
@@ -538,6 +604,8 @@
     body.classList.toggle('open', !isOpen);
     chev.classList.toggle('open', !isOpen);
   }
+
+  buildDatePicker();
 
   function toast(msg, err=false) {
     const t = document.getElementById('toast');
