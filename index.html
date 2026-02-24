@@ -214,23 +214,54 @@
   /* ── MODAL ── */
   .overlay {
     position: fixed; inset: 0; background: rgba(59,32,16,0.5);
-    z-index: 200; display: none; align-items: flex-end; justify-content: center;
-    padding-bottom: env(safe-area-inset-bottom);
+    z-index: 200; display: none; align-items: center; justify-content: center;
+    padding: 20px;
   }
   .overlay.open { display: flex; }
   .modal {
-    background: var(--card); border-radius: 24px 24px 0 0;
-    padding: 12px 20px 48px; width: 100%; max-width: 480px;
-    max-height: 88vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
-    animation: up 0.3s cubic-bezier(0.32,0.72,0,1);
+    background: var(--card); border-radius: 20px;
+    padding: 24px; width: 100%; max-width: 500px;
+    max-height: 85vh; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    animation: popIn 0.3s cubic-bezier(0.32,0.72,0,1);
+    box-shadow: 0 20px 60px rgba(59,32,16,0.15);
+    position: relative;
   }
-  @keyframes up { from{transform:translateY(100%)} to{transform:translateY(0)} }
-  .m-handle { width: 36px; height: 4px; background: var(--div); border-radius: 2px; margin: 0 auto 18px; }
+  @keyframes popIn { from{transform:scale(0.95); opacity:0} to{transform:scale(1); opacity:1} }
+  
+  .m-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .m-header-content { flex: 1; }
+  .m-close {
+    width: 32px; height: 32px; border: none; background: var(--bg);
+    border-radius: 8px; cursor: pointer; font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: background 0.2s;
+  }
+  .m-close:hover { background: var(--div); }
+  .m-close:active { opacity: 0.7; }
+  
+  .m-handle { display: none; }
   .m-title  {
     font-family: var(--font-head); font-size: 24px;
     color: var(--brown); margin-bottom: 4px;
   }
   .m-sub    { font-size: 13px; color: var(--text2); margin-bottom: 22px; line-height: 1.5; }
+
+  @media (max-width: 767px) {
+    .overlay {
+      align-items: flex-end; justify-content: center;
+      padding-bottom: env(safe-area-inset-bottom); padding: 0;
+    }
+    .modal {
+      border-radius: 24px 24px 0 0; padding: 12px 20px 48px;
+      max-width: 100%; animation: up 0.3s cubic-bezier(0.32,0.72,0,1);
+    }
+    @keyframes up { from{transform:translateY(100%)} to{transform:translateY(0)} }
+    .m-handle { display: block; width: 36px; height: 4px; background: var(--div); border-radius: 2px; margin: 0 auto 18px; }
+    .m-header { display: none; }
+  }
 
   .fg { margin-bottom: 14px; }
   .fl {
@@ -292,8 +323,6 @@
 </style>
 </head>
 <body>
-
-<div class="nav-hint">Renuka's Women's Fashion Studio · renuka-tailoring.github.io</div>
 <div class="app-shell">
 <!-- HERO -->
 <div class="hero">
@@ -301,7 +330,7 @@
     <div class="hero-tag">✦ Boutique Tailoring &amp; Styling</div>
     <div class="hero-name">Renuka’s</div>
     <div class="hero-studio">Women’s Fashion Studio</div>
-    <div class="hero-sub">Stitching &amp; styling services for women<br>right here in our community</div>
+    <div class="hero-sub">Stitching &amp; styling services for kids and women<br>right here in our community</div>
     <a class="btn-wa" href="https://wa.me/919940539180" target="_blank">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.724.972.993-3.63-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
       Chat on WhatsApp
@@ -360,7 +389,7 @@
       <div class="step-num">2</div>
       <div>
         <div class="step-title">Sent to Renuka via WhatsApp</div>
-        <div class="step-sub">Your order goes directly to Renuka's WhatsApp — no apps to install</div>
+        <div class="step-sub">Your order goes directly to Renuka's WhatsApp</div>
       </div>
     </div>
     <div class="step">
@@ -387,8 +416,13 @@
 <div class="overlay" id="m-order" onclick="overlayClose(event)">
   <div class="modal">
     <div class="m-handle"></div>
-    <div class="m-title">Place an Order</div>
-    <div class="m-sub">Fill in your details — sent to Renuka's WhatsApp instantly</div>
+    <div class="m-header">
+      <div class="m-header-content">
+        <div class="m-title">Place an Order</div>
+        <div class="m-sub">Fill in your details — sent to Renuka's WhatsApp instantly</div>
+      </div>
+      <button class="m-close" onclick="closeModal()" title="Close">✕</button>
+    </div>
 
     <div class="fg">
       <label class="fl">Your Name</label>
