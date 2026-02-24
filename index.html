@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <meta charset="UTF-8">
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -493,8 +495,11 @@
       <input class="fi" id="f-size" placeholder="e.g. Bust 36, Waist 30, Hip 38 or Size M"/>
     </div>
     <div class="fg">
-      <label class="fl">Expected Date</label>
-      <input class="fi" id="f-date" type="date" placeholder="dd-mm-yyyy" lang="en-GB/>
+<label class="fl">Expected Date</label>
+<input class="fi" id="f-date" type="text" readonly>
+<span class="chip-note" style="margin-top: 6px; display: block;">
+📅 Tap to change date
+</span>
     </div>
     <div class="fg">
       <label class="fl">Special Instructions</label>
@@ -539,13 +544,30 @@
   function overlayClose(e) {
     if (e.target === document.getElementById('m-order')) closeModal();
   }
+ function formatDate(date) {
+  const d = new Date(date);
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
+ flatpickr("#f-date", {
+  dateFormat: "d-m-Y",
+  defaultDate: "today",
+  minDate: "today",
+  disableMobile: true   // IMPORTANT for iPhone consistency
+});
 
   function sendOrder() {
     const name  = document.getElementById('f-name').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
     const flat  = document.getElementById('f-flat').value.trim();
     const size  = document.getElementById('f-size').value.trim();
-    const date  = document.getElementById('f-date').value;
+   // const date  = document.getElementById('f-date').value;
+   // Set today's date
+const today = new Date();
+    const date=document.getElementById('f-date').value = formatDate(today);
     const note  = document.getElementById('f-note').value.trim();
 
     if (!name)                { toast('Please enter your name', true); return; }
