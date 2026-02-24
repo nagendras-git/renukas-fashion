@@ -169,6 +169,7 @@
 
   .svc-name { font-size: 14px; font-weight: 700; color: var(--text1); }
   .svc-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
+  .svc-price { font-size: 13px; font-weight: 600; color: var(--brown); margin-top: 6px; }
 
   /* ── HOW IT WORKS ── */
   .steps { display: flex; flex-direction: column; }
@@ -323,12 +324,18 @@
     background: var(--bg); border: 1.5px solid var(--div);
     border-radius: 8px; padding: 9px 13px; font-size: 13px; font-weight: 600;
     color: var(--text2); cursor: pointer; font-family: var(--font-body);
-    transition: all 0.15s; display: flex; align-items: center; gap: 6px;
+    transition: all 0.15s; display: flex; flex-direction: column; align-items: center; gap: 4px;
   }
   .chip.on {
     background: var(--brown); border-color: var(--brown); color: #FFFFFF;
   }
+  .chip.on .chip-price {
+    color: rgba(255,255,255,0.9);
+  }
   .chip:active { opacity: 0.7; }
+  .chip-price {
+    font-size: 10px; font-weight: 500; color: var(--brown); 
+  }
   .chip-note {
     font-size: 11px; color: var(--text3); font-weight: 400;
     margin-top: 6px; display: block;
@@ -390,11 +397,11 @@
   </div>
   <div class="sec-content">
     <div class="svc-list">
-      <div class="svc-row"><div class="svc-icon">👗</div><div><div class="svc-name">Frocks</div><div class="svc-desc">Kids &amp; Ladies</div></div></div>
-      <div class="svc-row"><div class="svc-icon">🥻</div><div><div class="svc-name">Kurtis</div><div class="svc-desc">All styles</div></div></div>
-      <div class="svc-row"><div class="svc-icon">💃</div><div><div class="svc-name">Lehengas</div><div class="svc-desc">Bridal &amp; Party wear</div></div></div>
-      <div class="svc-row"><div class="svc-icon">👚</div><div><div class="svc-name">Blouses</div><div class="svc-desc">All neck designs</div></div></div>
-      <div class="svc-row"><div class="svc-icon">〰️</div><div><div class="svc-name">Zig-Zag Finishing</div><div class="svc-desc">Clean edge finishing for all garments</div></div></div>
+      <div class="svc-row"><div class="svc-icon">👗</div><div><div class="svc-name">Frocks</div><div class="svc-desc">Kids &amp; Ladies</div><div class="svc-price">₹800 - ₹1,500</div></div></div>
+      <div class="svc-row"><div class="svc-icon">🥻</div><div><div class="svc-name">Kurtis</div><div class="svc-desc">All styles</div><div class="svc-price">₹500 - ₹1,000</div></div></div>
+      <div class="svc-row"><div class="svc-icon">💃</div><div><div class="svc-name">Lehengas</div><div class="svc-desc">Bridal &amp; Party wear</div><div class="svc-price">₹1,500 - ₹2,000</div></div></div>
+      <div class="svc-row"><div class="svc-icon">👚</div><div><div class="svc-name">Blouses</div><div class="svc-desc">All neck designs</div><div class="svc-price">₹350 - ₹1,000</div></div></div>
+      <div class="svc-row"><div class="svc-icon">〰️</div><div><div class="svc-name">Zig-Zag Finishing</div><div class="svc-desc">Clean edge finishing for all garments</div><div class="svc-price">₹100 - ₹150</div></div></div>
     </div>
   </div>
 
@@ -409,8 +416,8 @@
   </div>
   <div class="sec-content">
     <div class="svc-list">
-      <div class="svc-row"><div class="svc-icon">👘</div><div><div class="svc-name">Saree Draping</div><div class="svc-desc">Professional draping for weddings, functions &amp; special occasions</div></div></div>
-      <div class="svc-row"><div class="svc-icon">🌿</div><div><div class="svc-name">Mehendi on Hands</div><div class="svc-desc">Haldi &amp; mehendi application for festive &amp; wedding events</div></div></div>
+      <div class="svc-row"><div class="svc-icon">👘</div><div><div class="svc-name">Saree Draping</div><div class="svc-desc">Professional draping for weddings, functions &amp; special occasions</div><div class="svc-price">₹500</div></div></div>
+      <div class="svc-row"><div class="svc-icon">🌿</div><div><div class="svc-name">Mehendi on Hands</div><div class="svc-desc">Bridal & Mehendi (Henna) designs for weddings & celebrations</div><div class="svc-price">₹1,000 - ₹3,000</div></div></div>
     </div>
   </div>
 
@@ -479,13 +486,13 @@
     <div class="fg">
       <label class="fl">Select Services</label>
       <div class="chips">
-        <button class="chip" onclick="pickSvc(this,'Frock')">👗 Frock</button>
-        <button class="chip" onclick="pickSvc(this,'Kurti')">🥻 Kurti</button>
-        <button class="chip" onclick="pickSvc(this,'Lehenga')">💃 Lehenga</button>
-        <button class="chip" onclick="pickSvc(this,'Blouse')">🪡 Blouse</button>
-        <button class="chip" onclick="pickSvc(this,'Zig-Zag Finishing')">〰️ Zig-Zag</button>
-        <button class="chip" onclick="pickSvc(this,'Saree Draping')">👘 Saree Draping</button>
-        <button class="chip" onclick="pickSvc(this,'Mehendi on Hands')">🌿 Mehendi</button>
+        <button class="chip" onclick="pickSvc(this,'Frock')"><div>👗 Frock</div><div class="chip-price">₹800-₹1,500</div></button>
+        <button class="chip" onclick="pickSvc(this,'Kurti')"><div>🥻 Kurti</div><div class="chip-price">₹500-₹1,000</div></button>
+        <button class="chip" onclick="pickSvc(this,'Lehenga')"><div>💃 Lehenga</div><div class="chip-price">₹1,500-₹2,000</div></button>
+        <button class="chip" onclick="pickSvc(this,'Blouse')"><div>🪡 Blouse</div><div class="chip-price">₹350-₹1,000</div></button>
+        <button class="chip" onclick="pickSvc(this,'Zig-Zag Finishing')"><div>〰️ Zig-Zag</div><div class="chip-price">₹100-₹150</div></button>
+        <button class="chip" onclick="pickSvc(this,'Saree Draping')"><div>👘 Saree Draping</div><div class="chip-price">₹500</div></button>
+        <button class="chip" onclick="pickSvc(this,'Mehendi on Hands')"><div>🌿 Mehendi</div><div class="chip-price">₹1,000-₹3,000</div></button>
       </div>
       <span class="chip-note">Tap to select · Select multiple if needed</span>
     </div>
@@ -522,6 +529,18 @@
   // ⚠️ Replace with Renuka's real number: country code + number, no + or spaces
   // Example for India: 919876543210 (91 = India code)
   const WHATSAPP = '918465867727'; // 👈 CHANGE THIS
+  
+  // Service prices mapping
+  const servicePrices = {
+    'Frock': '₹800 - ₹1,500',
+    'Kurti': '₹500 - ₹1,000',
+    'Lehenga': '₹1,500 - ₹2,000',
+    'Blouse': '₹350 - ₹1,000',
+    'Zig-Zag Finishing': '₹100 - ₹150',
+    'Saree Draping': '₹500',
+    'Mehendi on Hands': '₹1,000 - ₹3,000'
+  };
+  
   let selectedSvcs = [];
 
   function pickSvc(el, svc) {
@@ -594,7 +613,7 @@
       `👤 *Name:* ${name}`,
       `📞 *Phone:* ${phone}`,
       flat  ? `🏠 *Flat / Block:* ${flat}` : '',
-      `🛍️ *Services:* ${selectedSvcs.join(', ')}`,
+      `🛍️ *Services:*\n${selectedSvcs.map(s => `  • ${s} - ${servicePrices[s]}`).join('\n')}`,
       size  ? `📏 *Measurements:* ${size}` : '',
       deliveryStr ? `📅 *Expected By:* ${deliveryStr}` : '',
       note  ? `📝 *Instructions:* ${note}` : '',
