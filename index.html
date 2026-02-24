@@ -554,9 +554,9 @@
 
  flatpickr("#f-date", {
   dateFormat: "d-m-Y",
-  defaultDate: "today",
-  minDate: "today",
-  disableMobile: true   // IMPORTANT for iPhone consistency
+  defaultDate: "today",  // Show today's date initially
+  minDate: "today",      // Allow today or future dates
+  disableMobile: false   // Allow mobile interaction
 });
 
   function sendOrder() {
@@ -564,10 +564,7 @@
     const phone = document.getElementById('f-phone').value.trim();
     const flat  = document.getElementById('f-flat').value.trim();
     const size  = document.getElementById('f-size').value.trim();
-   // const date  = document.getElementById('f-date').value;
-   // Set today's date
-const today = new Date();
-    const date=document.getElementById('f-date').value = formatDate(today);
+    const date  = document.getElementById('f-date').value; // Get user's selected date
     const note  = document.getElementById('f-note').value.trim();
 
     if (!name)                { toast('Please enter your name', true); return; }
