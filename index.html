@@ -88,6 +88,7 @@
 
   /* ── CONTENT ── */
   .content { max-width: 480px; margin: 0 auto; padding: 0 16px 100px; }
+  @media (min-width: 768px) { .content { padding-bottom: 32px; } }
 
   /* ── DESKTOP RESPONSIVE ── */
   @media (min-width: 768px) {
@@ -134,17 +135,18 @@
   .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--div); }
 
   /* ── SERVICE CARDS ── */
-  .svc-list { display: flex; flex-direction: column; gap: 8px; }
+  .svc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .svc-list.full-width .svc-row { grid-column: 1 / -1; }
   .svc-row {
     background: var(--card); border-radius: 14px;
-    border: 1.5px solid var(--div); padding: 14px 16px;
-    display: flex; align-items: center; gap: 14px;
+    border: 1.5px solid var(--div); padding: 16px 14px;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
   }
   .svc-icon {
-    width: 44px; height: 44px; border-radius: 11px;
+    width: 48px; height: 48px; border-radius: 12px;
     background: var(--brown-light);
     display: flex; align-items: center; justify-content: center;
-    font-size: 22px; flex-shrink: 0;
+    font-size: 24px; flex-shrink: 0;
   }
 
   .svc-name { font-size: 14px; font-weight: 700; color: var(--text1); }
@@ -177,6 +179,7 @@
   .footer-sub { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; text-transform: uppercase; }
 
   /* ── STICKY ORDER ── */
+  @media (min-width: 768px) { .sticky { display: none; } }
   .sticky {
     position: fixed; bottom: 0; left: 0; right: 0;
     background: rgba(245,239,230,0.97);
@@ -301,7 +304,7 @@
     <div class="svc-row"><div class="svc-icon">🥻</div><div><div class="svc-name">Kurtis</div><div class="svc-desc">All styles</div></div></div>
     <div class="svc-row"><div class="svc-icon">👘</div><div><div class="svc-name">Lehengas</div><div class="svc-desc">Bridal &amp; Party wear</div></div></div>
     <div class="svc-row"><div class="svc-icon">👚</div><div><div class="svc-name">Blouses</div><div class="svc-desc">All neck designs</div></div></div>
-    <div class="svc-row"><div class="svc-icon">🧵</div><div><div class="svc-name">Zig-Zag Finishing</div><div class="svc-desc">Clean edge finishing for all garments</div></div></div>
+    <div class="svc-row" style="grid-column:1/-1;"><div class="svc-icon">🧵</div><div class="svc-name">Zig-Zag Finishing</div><div class="svc-desc">Clean edge finishing for all garments</div></div>
   </div>
 
   <!-- EVENT SERVICES -->
@@ -416,7 +419,7 @@
 <script>
   // ⚠️ Replace with Renuka's real number: country code + number, no + or spaces
   // Example for India: 919876543210 (91 = India code)
-  const WHATSAPP = '919940539180'; // 👈 CHANGE THIS
+  const WHATSAPP = '1234567890'; // 👈 CHANGE THIS
   let selectedSvcs = [];
 
   function pickSvc(el, svc) {
@@ -461,7 +464,7 @@
 
     const msg = [
       "🧵 *New Order — Renuka's Fashion Studio*",
-      '━━━━━━━━━━━━━━━━━━━━',
+      '--------------------',
       `👤 *Name:* ${name}`,
       `📞 *Phone:* ${phone}`,
       flat  ? `🏠 *Flat / Block:* ${flat}` : '',
@@ -469,8 +472,8 @@
       size  ? `📏 *Measurements:* ${size}` : '',
       deliveryStr ? `📅 *Expected By:* ${deliveryStr}` : '',
       note  ? `📝 *Instructions:* ${note}` : '',
-      '━━━━━━━━━━━━━━━━━━━━',
-      "_Sent via Renuka's Fashion Studio order form_"
+      '--------------------',
+      "Sent via Renuka's Fashion Studio order form"
     ].filter(Boolean).join('\n');
 
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
