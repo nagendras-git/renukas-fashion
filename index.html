@@ -152,51 +152,72 @@
   .sec-content.closed { max-height: 0; }
   .sec-content.closed ~ .sec-label { display: none; }
 
-  /* ── CONFIRMATION DIALOG ── */
+  /* ── CONFIRMATION DIALOG - CENTERED CARD MODAL ── */
   .confirm-dialog {
     position: fixed; inset: 0; background: rgba(59,32,16,0.5);
-    display: flex; align-items: flex-end; justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
   }
   .confirm-dialog.show {
     opacity: 1; pointer-events: auto;
   }
   .confirm-content {
-    background: white; border-radius: 20px 20px 0 0;
-    padding: 24px 20px calc(20px + env(safe-area-inset-bottom));
-    max-width: 100%; width: 100%;
-    box-shadow: 0 -4px 20px rgba(59,32,16,0.15);
-    animation: slideUp 0.3s ease;
+    background: white; border-radius: 20px;
+    padding: 32px 24px 24px;
+    max-width: 380px; width: 90%;
+    box-shadow: 0 10px 40px rgba(59,32,16,0.2);
+    animation: popUp 0.3s cubic-bezier(0.32,0.72,0,1);
   }
-  @keyframes slideUp {
-    from { transform: translateY(100%); }
-    to { transform: translateY(0); }
+  @keyframes popUp {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
   }
   .confirm-icon {
-    font-size: 48px; text-align: center; margin-bottom: 16px;
+    font-size: 56px; text-align: center; margin-bottom: 16px;
   }
   .confirm-title {
-    font-size: 18px; font-weight: 700; color: var(--text1);
-    text-align: center; margin-bottom: 8px;
+    font-size: 20px; font-weight: 700; color: var(--text1);
+    text-align: center; margin-bottom: 12px;
   }
   .confirm-text {
     font-size: 14px; color: var(--text2); text-align: center;
-    margin-bottom: 20px; line-height: 1.5;
+    margin-bottom: 24px; line-height: 1.6;
   }
   .confirm-actions {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    display: flex; flex-direction: column; gap: 10px;
   }
   .confirm-btn {
     padding: 14px 16px; border: none; border-radius: 12px;
-    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-size: 15px; font-weight: 700; cursor: pointer;
     font-family: var(--font-body); transition: opacity 0.2s;
+    width: 100%;
   }
-  .confirm-btn:active { opacity: 0.8; }
+  .confirm-btn:active { opacity: 0.85; }
   .confirm-btn-keep {
     background: var(--brown); color: white;
+    order: 1;
   }
   .confirm-btn-cancel {
-    background: var(--div); color: var(--text1);
+    background: var(--brown-light); color: var(--text1);
+    order: 2;
+  }
+
+  /* Responsive: Mobile adjustments for confirmation dialog */
+  @media (max-width: 480px) {
+    .confirm-content {
+      max-width: 100%;
+      width: 85%;
+      padding: 28px 20px 20px;
+    }
+    .confirm-icon {
+      font-size: 48px;
+    }
+    .confirm-title {
+      font-size: 18px;
+    }
+    .confirm-text {
+      font-size: 13px;
+    }
   }
 
   /* ── SERVICE CARDS ── */
@@ -332,6 +353,19 @@
     font-size: 11px; font-weight: 700; color: var(--text2);
     text-transform: uppercase; letter-spacing: 0.07em;
     margin-bottom: 6px; display: block;
+  }
+  .fl .required {
+    color: #EF5350; font-weight: 800; margin-left: 3px;
+  }
+
+  /* Required field legend */
+  .m-required-note {
+    font-size: 12px; color: var(--text3); font-weight: 400;
+    text-align: left; margin: 8px 0 12px;
+    padding-bottom: 0;
+  }
+  .m-required-note .required {
+    color: #EF5350; font-weight: 700;
   }
   .fi {
     width: 100%; border: 1.5px solid var(--div);
@@ -555,21 +589,22 @@
       <div>
         <div class="m-title">Your Order</div>
         <div class="m-sub">Tell us what you want & when you need it</div>
+        <div class="m-required-note"><span class="required">*</span> indicates mandatory field</div>
       </div>
       <button class="m-close" onclick="closeModal()">✕</button>
     </div>
 
     <div class="m-content">
       <div class="fg">
-        <label class="fl">Your Name</label>
+        <label class="fl">Your Name <span class="required">*</span></label>
         <input class="fi" id="f-name" placeholder="e.g. Priya Sharma"/>
       </div>
       <div class="fg">
-        <label class="fl">Phone Number</label>
+        <label class="fl">Phone Number <span class="required">*</span></label>
         <input class="fi" id="f-phone" type="tel" placeholder="e.g. 9876543210"/>
       </div>
       <div class="fg">
-        <label class="fl">Flat / Block Number</label>
+        <label class="fl">Flat / Block Number <span class="required">*</span></label>
         <input class="fi" id="f-flat" placeholder="e.g. A-204, Block B"/>
       </div>
 
@@ -592,7 +627,7 @@
         <input class="fi" id="f-size" placeholder="e.g. Bust 36, Waist 30, Hip 38 or Size M"/>
       </div>
       <div class="fg">
-        <label class="fl">Expected Date</label>
+        <label class="fl">Expected Date <span class="required">*</span></label>
         <input class="fi" id="f-date" type="text" readonly>
         <span class="chip-note" style="margin-top: 6px; display: block;">
         📅 Tap to change date
@@ -622,7 +657,7 @@
   </div>
 </div>
 
-<!-- CONFIRMATION DIALOG -->
+<!-- CONFIRMATION DIALOG - Centered Card Modal -->
 <div class="confirm-dialog" id="confirm-cancel">
   <div class="confirm-content">
     <div class="confirm-icon">❌</div>
@@ -792,7 +827,9 @@
 
     if (!name)                { toast('Please enter your name', true); return; }
     if (!phone)               { toast('Please enter your phone number', true); return; }
+    if (!flat)                { toast('Please enter your flat / block number', true); return; }
     if (!selectedSvcs.length) { toast('Please select at least one service', true); return; }
+    if (!date)                { toast('Please select an expected delivery date', true); return; }
 
     let deliveryStr = '';
     if (date) {
