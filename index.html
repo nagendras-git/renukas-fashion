@@ -152,6 +152,53 @@
   .sec-content.closed { max-height: 0; }
   .sec-content.closed ~ .sec-label { display: none; }
 
+  /* ── CONFIRMATION DIALOG ── */
+  .confirm-dialog {
+    position: fixed; inset: 0; background: rgba(59,32,16,0.5);
+    display: flex; align-items: flex-end; justify-content: center;
+    z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .confirm-dialog.show {
+    opacity: 1; pointer-events: auto;
+  }
+  .confirm-content {
+    background: white; border-radius: 20px 20px 0 0;
+    padding: 24px 20px calc(20px + env(safe-area-inset-bottom));
+    max-width: 100%; width: 100%;
+    box-shadow: 0 -4px 20px rgba(59,32,16,0.15);
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+  .confirm-icon {
+    font-size: 48px; text-align: center; margin-bottom: 16px;
+  }
+  .confirm-title {
+    font-size: 18px; font-weight: 700; color: var(--text1);
+    text-align: center; margin-bottom: 8px;
+  }
+  .confirm-text {
+    font-size: 14px; color: var(--text2); text-align: center;
+    margin-bottom: 20px; line-height: 1.5;
+  }
+  .confirm-actions {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  .confirm-btn {
+    padding: 14px 16px; border: none; border-radius: 12px;
+    font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: var(--font-body); transition: opacity 0.2s;
+  }
+  .confirm-btn:active { opacity: 0.8; }
+  .confirm-btn-keep {
+    background: var(--brown); color: white;
+  }
+  .confirm-btn-cancel {
+    background: var(--div); color: var(--text1);
+  }
+
   /* ── SERVICE CARDS ── */
   .svc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px 0; }
   .svc-list.full-width .svc-row { grid-column: 1 / -1; }
@@ -324,6 +371,57 @@
   .chip-note {
     font-size: 11px; color: var(--text3); font-weight: 400;
     margin-top: 6px; display: block;
+  }
+
+  /* ── ORDER SUMMARY - PROFESSIONAL BOXED DESIGN ── */
+  .order-summary-section {
+    display: none; margin: 24px 0 0 0; padding: 16px;
+    border: 1.5px solid var(--brown); border-radius: 14px;
+    background: linear-gradient(135deg, rgba(235, 229, 215, 0.4) 0%, rgba(245, 239, 230, 0.6) 100%);
+    animation: fadeIn 0.3s ease;
+  }
+  .order-summary-section.show {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .order-summary-divider {
+    height: 1.5px; background: var(--brown); margin: 12px 0;
+    opacity: 0.3;
+  }
+  .order-summary-header {
+    font-size: 12px; font-weight: 700; color: var(--brown);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 0; display: flex; align-items: center; gap: 8px;
+    padding-bottom: 12px;
+  }
+  .order-summary-header::before {
+    content: '✓'; font-size: 16px; font-weight: 800; color: var(--brown);
+  }
+  .order-summary-items {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-bottom: 12px;
+    padding: 0;
+  }
+  .order-summary-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--text1); font-weight: 500;
+    padding: 0;
+  }
+  .order-summary-item-icon {
+    font-size: 18px; display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; flex-shrink: 0;
+  }
+  .order-summary-item-name {
+    flex: 1;
+  }
+  .order-summary-note {
+    font-size: 11px; color: var(--text2); font-style: italic;
+    text-align: center; padding: 8px 0 0 0;
+    border-top: 1px solid var(--div);
+    margin-top: 4px;
   }
 
   .m-actions { 
@@ -504,14 +602,35 @@
         <label class="fl">Special Instructions</label>
         <textarea class="fi" id="f-note" placeholder="e.g. Round neck, 3/4 sleeves, colour preference, event date..."></textarea>
       </div>
+
+      <!-- ORDER SUMMARY - Moved here after Special Instructions -->
+      <div class="order-summary-section" id="order-summary-section">
+        <div class="order-summary-header">Order Summary</div>
+        <div class="order-summary-divider"></div>
+        <div class="order-summary-items" id="summary-items"></div>
+        <div class="order-summary-note">Pricing will be confirmed after review</div>
+      </div>
     </div>
 
     <div class="m-actions">
-      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-cancel" onclick="showCancelConfirm()">Cancel</button>
       <button class="btn-send" onclick="sendOrder()">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.852L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.013-1.376l-.36-.214-3.724.972.993-3.63-.235-.373A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
         Send via WhatsApp
       </button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRMATION DIALOG -->
+<div class="confirm-dialog" id="confirm-cancel">
+  <div class="confirm-content">
+    <div class="confirm-icon">❌</div>
+    <div class="confirm-title">Cancel Order?</div>
+    <div class="confirm-text">Are you sure you want to discard this order? Your details will be cleared.</div>
+    <div class="confirm-actions">
+      <button class="confirm-btn confirm-btn-keep" onclick="keepAndModify()">Keep & Modify</button>
+      <button class="confirm-btn confirm-btn-cancel" onclick="confirmCancelOrder()">Cancel Order</button>
     </div>
   </div>
 </div>
@@ -524,6 +643,33 @@
   const WHATSAPP = '918465867727'; // 👈 CHANGE THIS
   let selectedSvcs = [];
 
+  // ── SERVICE DATABASE ──
+  const serviceDatabase = {
+    'Frock': { icon: '👗', price: '₹800 - ₹1,500', name: 'Frock' },
+    'Kurti': { icon: '🥻', price: '₹500 - ₹1,000', name: 'Kurti' },
+    'Lehenga': { icon: '💃', price: '₹1,500 - ₹2,000', name: 'Lehenga' },
+    'Blouse': { icon: '🪡', price: '₹350 - ₹1,000', name: 'Blouse' },
+    'Zig-Zag Finishing': { icon: '〰️', price: '₹100 - ₹150', name: 'Zig-Zag Finishing' },
+    'Saree Draping': { icon: '👘', price: '₹500', name: 'Saree Draping' },
+    'Mehendi on Hands': { icon: '🌿', price: '₹1,000 - ₹3,000', name: 'Mehendi on Hands' }
+  };
+
+  // ── COLLAPSE SERVICES BY DEFAULT ──
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get all service section headers and collapse them by default
+    const sectionHeaders = document.querySelectorAll('.sec-header');
+    sectionHeaders.forEach(header => {
+      const content = header.nextElementSibling;
+      const toggle = header.querySelector('.sec-toggle');
+      
+      // Add closed class to collapse content
+      if (content && content.classList.contains('sec-content')) {
+        content.classList.add('closed');
+        if (toggle) toggle.classList.remove('open');
+      }
+    });
+  });
+
   function pickSvc(el, svc) {
     el.classList.toggle('on');
     if (selectedSvcs.includes(svc)) {
@@ -531,19 +677,94 @@
     } else {
       selectedSvcs.push(svc);
     }
+    // Update order summary
+    updateOrderSummary();
+  }
+
+  // ── UPDATE ORDER SUMMARY ──
+  function updateOrderSummary() {
+    const summarySection = document.getElementById('order-summary-section');
+    const itemsContainer = document.getElementById('summary-items');
+
+    if (selectedSvcs.length === 0) {
+      // Hide summary if no services selected
+      summarySection.classList.remove('show');
+      itemsContainer.innerHTML = '';
+      return;
+    }
+
+    // Show summary
+    summarySection.classList.add('show');
+
+    // Generate summary items (only services, no prices)
+    let itemsHTML = '';
+    selectedSvcs.forEach(svc => {
+      const serviceInfo = serviceDatabase[svc];
+      if (serviceInfo) {
+        itemsHTML += `
+          <div class="order-summary-item">
+            <div class="order-summary-item-icon">${serviceInfo.icon}</div>
+            <div class="order-summary-item-name">${serviceInfo.name}</div>
+          </div>
+        `;
+      }
+    });
+
+    itemsContainer.innerHTML = itemsHTML;
   }
 
   function openOrder() {
     document.getElementById('m-order').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
+
   function closeModal() {
     document.getElementById('m-order').classList.remove('open');
     document.body.style.overflow = '';
   }
+
   function overlayClose(e) {
-    if (e.target === document.getElementById('m-order')) closeModal();
+    if (e.target === document.getElementById('m-order')) {
+      showCancelConfirm();
+    }
   }
+
+  // ── CANCEL CONFIRMATION DIALOG ──
+  function showCancelConfirm() {
+    document.getElementById('confirm-cancel').classList.add('show');
+  }
+
+  function hideCancelConfirm() {
+    document.getElementById('confirm-cancel').classList.remove('show');
+  }
+
+  function keepAndModify() {
+    hideCancelConfirm();
+  }
+
+  function confirmCancelOrder() {
+    // Reset form data
+    resetForm();
+    // Close confirmation dialog
+    hideCancelConfirm();
+    // Close modal
+    closeModal();
+    // Show toast
+    toast('Order cancelled');
+  }
+
+  function resetForm() {
+    // Reset input fields
+    ['f-name','f-phone','f-flat','f-size','f-date','f-note'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    // Reset service chips
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+    selectedSvcs = [];
+    // Hide order summary
+    updateOrderSummary();
+  }
+
  function formatDate(date) {
   const d = new Date(date);
   const day = String(d.getDate()).padStart(2, '0');
@@ -560,7 +781,6 @@
 });
 
   
-
 
   function sendOrder() {
     const name  = document.getElementById('f-name').value.trim();
@@ -607,13 +827,8 @@
 
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
     closeModal();
+    resetForm();
     toast('Order sent to Renuka ✓');
-
-    ['f-name','f-phone','f-flat','f-size','f-date','f-note'].forEach(id => {
-      document.getElementById(id).value = '';
-    });
-    document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
-    selectedSvcs = [];
   }
 
   function toast(msg, err=false) {
