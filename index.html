@@ -723,7 +723,7 @@
   // ── GOOGLE SHEETS ORDER LOG ──
   // 👈 Paste your Google Apps Script Web App URL below to auto-log orders
   // See setup instructions at the bottom of this file
-  const SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzz2s_LLopO3ZuOVuiwL9w6QykYhzI0MwqMmaUBBpvPK2iCPIggu5pYyfuc6guxEFUY/exec'; // e.g. 'https://script.google.com/macros/s/xxxxx/exec'
+  const SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbyufc17qlM_MLKOIv9BxG8Ti0ij86ZXTj5YlIXToaQZOlzdQom7K-Xy7kLZ2udVG44K/exec'; // e.g. 'https://script.google.com/macros/s/xxxxx/exec'
 
   function logToSheet(data) {
     if (!SHEET_WEBHOOK) return;
@@ -1021,7 +1021,8 @@ document.addEventListener('click', e => {
       services: selectedSvcs.join(', '),
       measurements: size,
       deliveryDate: deliveryStr,
-      notes: note
+      notes: note,
+      status: 'Pending'
     });
 
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
@@ -1050,7 +1051,7 @@ document.addEventListener('click', e => {
 
   1. Open Google Sheets → create a new spreadsheet
   2. Name Sheet1 headers (Row 1):
-     A: Timestamp | B: Name | C: Phone | D: Flat | E: Services | F: Measurements | G: Delivery Date | H: Notes
+     A: Timestamp | B: Name | C: Phone | D: Flat | E: Services | F: Measurements | G: Delivery Date | H: Notes | I: Status
 
   3. Go to Extensions → Apps Script
   4. Delete default code and paste this:
@@ -1066,7 +1067,8 @@ document.addEventListener('click', e => {
          p.services || '',
          p.measurements || '',
          p.deliveryDate || '',
-         p.notes || ''
+         p.notes || '',
+         p.status || 'Pending'
        ]);
        return ContentService.createTextOutput('OK');
      }
