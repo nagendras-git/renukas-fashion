@@ -149,7 +149,8 @@
   .sec-header:active { opacity: 0.9; }
   .sec-header-left { display: flex; align-items: center; gap: 8px; font-size: 16px; }
   .sec-header-count { font-size: 13px; opacity: 0.75; }
-  .sec-toggle { font-size: 18px; transition: transform 0.3s ease; }
+  .sec-toggle { transition: transform 0.3s ease; display:flex; align-items:center; color:var(--text3); }
+  .sec-toggle svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
   .sec-toggle.open { transform: rotate(180deg); }
   .sec-content { max-height: 2000px; overflow: hidden; transition: max-height 0.3s ease; }
   .sec-content.closed { max-height: 0; }
@@ -557,7 +558,7 @@
       <span>Tailoring Services</span>
       <span class="sec-header-count">5 services</span>
     </div>
-    <span class="sec-toggle open">▼</span>
+    <span class="sec-toggle open"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
   </div>
   <div class="sec-content">
     <div class="svc-list">
@@ -576,7 +577,7 @@
       <span>Event Services</span>
       <span class="sec-header-count">2 services</span>
     </div>
-    <span class="sec-toggle open">▼</span>
+    <span class="sec-toggle open"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
   </div>
   <div class="sec-content">
     <div class="svc-list">
@@ -718,6 +719,23 @@
   // ⚠️ Replace with Renuka's real number: country code + number, no + or spaces
   // Example for India: 919876543210 (91 = India code)
   const WHATSAPP = '918465867727'; // 👈 CHANGE THIS
+
+  // ── GOOGLE SHEETS ORDER LOG ──
+  // 👈 Paste your Google Apps Script Web App URL below to auto-log orders
+  // See setup instructions at the bottom of this file
+  const SHEET_WEBHOOK = 'https://script.google.com/macros/s/AKfycbzKc3ceVKrDi9XZfxW3kP4mFtsIumDxcrSHbkZ1i-GWdyDbpCsOuV-BVKeixb768E8j/exec'; // e.g. 'https://script.google.com/macros/s/xxxxx/exec'
+
+  function logToSheet(data) {
+    if (!SHEET_WEBHOOK) return; // Skip if no webhook configured
+    try {
+      fetch(SHEET_WEBHOOK, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(() => {}); // Fire-and-forget, don't block WhatsApp
+    } catch(e) {}
+  }
   let selectedSvcs = [];
 
   // ── SERVICE DATABASE ──
@@ -991,6 +1009,16 @@ document.addEventListener('click', e => {
       "Sent via Renuka's Fashion Studio order form"
     ].filter(Boolean).join('\n');
 
+    // Log order to Google Sheet (if configured)
+    logToSheet({
+      timestamp: new Date().toISOString(),
+      name, phone, flat,
+      services: selectedSvcs.join(', '),
+      measurements: size,
+      deliveryDate: deliveryStr,
+      notes: note
+    });
+
     window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
     closeModal();
     resetForm();
@@ -1009,6 +1037,46 @@ document.addEventListener('click', e => {
     content.classList.toggle('closed');
     toggle.classList.toggle('open');
   }
+
+  /*
+  ══════════════════════════════════════════════════════
+   GOOGLE SHEETS ORDER LOG — SETUP INSTRUCTIONS
+  ══════════════════════════════════════════════════════
+
+  1. Open Google Sheets → create a new spreadsheet
+  2. Name Sheet1 headers (Row 1):
+     A: Timestamp | B: Name | C: Phone | D: Flat | E: Services | F: Measurements | G: Delivery Date | H: Notes
+
+  3. Go to Extensions → Apps Script
+  4. Delete default code and paste this:
+
+     function doPost(e) {
+       var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1');
+       var data = JSON.parse(e.postData.contents);
+       sheet.appendRow([
+         data.timestamp,
+         data.name,
+         data.phone,
+         data.flat,
+         data.services,
+         data.measurements,
+         data.deliveryDate,
+         data.notes
+       ]);
+       return ContentService.createTextOutput('OK');
+     }
+
+  5. Click Deploy → New Deployment
+     - Type: Web app
+     - Execute as: Me
+     - Who has access: Anyone
+     - Click Deploy → Authorize
+
+  6. Copy the Web App URL and paste it in SHEET_WEBHOOK above
+
+  That's it! Every order will now auto-log to your Google Sheet.
+  ══════════════════════════════════════════════════════
+  */
 </script>
 </body>
 </html>
